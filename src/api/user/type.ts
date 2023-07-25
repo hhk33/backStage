@@ -1,38 +1,25 @@
-//登录
-export interface loginForm {
+export interface loginFormData {
     username: string,
     password: string
 }
 
-interface dataType {
-    token?: string
-    message?: string
-}
-
-export interface loginResponseData {
+interface requestData {
     code: number,
-    data: dataType
+    message: string,
+    ok: boolean
 }
 
-
-//用户信息
-interface userInfo {
-    userId: number,
-    avatar: string
-    username: string,
-    password: string,
-    desc: string,
-    roles: string[],
-    buttons: string[],
-    routes: string[],
-    token: string
+export interface loginRequestData extends requestData {
+    data: string
 }
 
-interface user {
-    checkUser: userInfo
+export interface userInfoRequestData extends requestData {
+    data: {
+        routes: string[],
+        buttons: string[],
+        roles: string[],
+        name: string,
+        avatar: string
+    }
 }
 
-export interface userResponseData {
-    code: number,
-    data: user
-}

@@ -2,15 +2,15 @@
 
 // 滚动条设置
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 3px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: $base-menu-background;
+    background-color: white;
 }
 
 ::-webkit-scrollbar-thumb {
-    width: 10px;
-    background-color: white;
+    width: 3px;
+    background-color: $base-menu-background;
     border-radius: 10px;
 }

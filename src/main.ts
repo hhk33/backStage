@@ -9,6 +9,9 @@ import 'virtual:svg-icons-register'
 import gloablComponent from './components/index'
 import router from '@/router'
 import pinia from '@/store'
+import './premisstion'
+//引入自定义指令
+import { isHasButton } from './directive/has'
 
 const app = createApp(App)
 
@@ -22,5 +25,7 @@ app.use(router)
 app.use(gloablComponent)
 //安装仓库
 app.use(pinia)
+//自定义指令
+isHasButton(App)
 
 app.mount('#app')

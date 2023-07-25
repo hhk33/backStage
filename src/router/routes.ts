@@ -1,3 +1,4 @@
+//常量路由:全部用户都可以访问到的路由
 export const contantRoute = [
     {
         path: '/login',
@@ -45,6 +46,19 @@ export const contantRoute = [
 
     },
     {
+        path: '/404',
+        component: () => import("@/views/404/index.vue"),
+        name: '404',
+        meta: {
+            title: '404',
+            hidden: true,
+            icon: 'List'
+        }
+    }
+]
+//异步路由：根据权限显示
+export const asnycRoute = [
+    {
         path: '/acl',
         component: () => import('@/layout/index.vue'),
         name: 'Acl',
@@ -53,6 +67,7 @@ export const contantRoute = [
             hidden: false,
             icon: 'Lock'
         },
+        redirect: '/acl/user',
         children: [
             {
                 path: '/acl/user',
@@ -95,6 +110,7 @@ export const contantRoute = [
             hidden: false,
             icon: 'Monitor'
         },
+        redirect: '/product/tradematk',
         children: [
             {
                 path: '/product/tradematk',
@@ -138,24 +154,15 @@ export const contantRoute = [
             }
         ]
     },
-    {
-        path: '/404',
-        component: () => import("@/views/404/index.vue"),
-        name: '404',
-        meta: {
-            title: '404',
-            hidden: true,
-            icon: 'List'
-        }
-    },
-    {
-        path: '/:pathMatch(.*)*',
-        redirect: '/404',
-        name: 'Any',
-        meta: {
-            title: '任意',
-            hidden: true,
-            icon: 'Reading'
-        },
-    }
 ]
+//任意路由
+export const anyRoute = {
+    path: '/:pathMatch(.*)*',
+    redirect: '/404',
+    name: 'Any',
+    meta: {
+        title: '任意路由',
+        hidden: true,
+        icon: 'DataLine',
+    },
+}

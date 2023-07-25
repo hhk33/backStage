@@ -1,9 +1,14 @@
 <template>
-    <div class="">404</div>
+    <div>404</div>
+    <button @click="goHome">返回首页</button>
 </template>
 
-<script setup>
-import { } from "vue"
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+let $router = useRouter()
+const goHome = () => {
+    $router.push('./home')
+}
 </script>
 
 <style scoped></style>

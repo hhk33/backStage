@@ -25,23 +25,23 @@
 import { reactive, ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
 import useUserStore from '@/store/modules/user.ts'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus';
 import { getTime } from '@/utils/time'
 
 let form = reactive({
-    username: "",
-    password: ""
+    username: "admin",
+    password: "atguigu123"
 })
 //表单验证规则
-const validatorUserName = ({}, value: any, callback: any) => {
+const validatorUserName = ({ }, value: any, callback: any) => {
     if (value.length >= 3)
         callback();
     else
         callback(new Error('用户名长度至少为三位'))
 }
 
-const validatorPassword = ({}, value: any, callback: any) => {
+const validatorPassword = ({ }, value: any, callback: any) => {
     if (value.length >= 6)
         callback();
     else
@@ -75,13 +75,15 @@ let loginForm = ref()
 let userStore = useUserStore()
 //路由器
 let $router = useRouter()
+let $route = useRoute()
 
 const login = async () => {
     await loginForm.value.validate();
     loading.value = true
     try {
         await userStore.userLogin(form)
-        $router.push('/')
+        let redirect: any = $route.query.redirect
+        $router.push({ path: redirect || '/' })
         ElNotification({
             type: 'success',
             message: '欢迎回来',
